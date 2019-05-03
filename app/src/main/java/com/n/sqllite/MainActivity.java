@@ -1,6 +1,7 @@
 package com.n.sqllite;
 
 import android.Manifest;
+import android.content.Intent;
 import android.database.sqlite.SQLiteDatabase;
         import android.support.v7.app.AppCompatActivity;
         import android.os.Bundle;
@@ -13,7 +14,7 @@ import helper.MyHelper;
 
 public class MainActivity extends AppCompatActivity {
     EditText etWord,etMeaning;
-    Button btnAdd;
+    Button btnAdd,btnShow;
 
 
     @Override
@@ -24,6 +25,7 @@ public class MainActivity extends AppCompatActivity {
         etWord = findViewById(R.id.etWord);
         etMeaning = findViewById(R.id.etMeaning);
         btnAdd = findViewById(R.id.btnAdd);
+        btnShow = findViewById(R.id.btnShow);
 
         final MyHelper myHelper = new MyHelper(this);
         final SQLiteDatabase sqLiteDatabase = myHelper.getWritableDatabase();
@@ -49,6 +51,13 @@ public class MainActivity extends AppCompatActivity {
 
 
                     }
+            }
+        });
+        btnShow.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MainActivity.this, DisplayWordActivity.class);
+                startActivity(intent);
             }
         });
     }
